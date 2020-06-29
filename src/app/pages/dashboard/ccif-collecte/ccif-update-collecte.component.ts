@@ -59,7 +59,8 @@ export class CcifUpdateCollecteComponent extends DialogComponent
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Oui, je veux collecter!'
+      confirmButtonText: 'Oui, je veux collecter!',
+      cancelButtonText: 'Non'
     }).then(result => {
       if (result.value) {
         this._api.newCollecte(this.model).subscribe(
@@ -81,7 +82,7 @@ export class CcifUpdateCollecteComponent extends DialogComponent
             console.log('error');
             Swal.fire({
               type: 'error',
-              title: 'Erreure Système',
+              title: 'Erreur Système',
               text: error.error,
               // footer: '<a href>Le système à rencontrer une erreur</a>'
             });

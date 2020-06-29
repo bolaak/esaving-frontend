@@ -6,6 +6,7 @@ import { User } from '../../../models/user';
 import { Agences } from '../../../models/agence';
 import { Roles } from '../../../models/roles';
 import { Client } from '../../../models/client';
+import Swal from 'sweetalert2';
 
 declare let $: any;
 @Component({
@@ -46,15 +47,24 @@ export class CcifUpdateClientsComponent extends DialogComponent implements OnIni
         this._api.addClient(this.model).subscribe(
             (resp: any) => {
                 this._progress = false;
-                this._snackBar.open('Ajout Effectué!', 'Succès', {
-                    duration: 2000
+                // this._snackBar.open('Ajout Effectué!', 'Succès', {
+                //     duration: 2000
+                // });
+                Swal.fire({
+                  type: 'success',
+                  title: 'Ajout ...',
+                  text: 'Effectué avec Succès',
+                  footer: '<a href>Suivante</a>'
                 });
-                this.dialogRef.close();
+                  this.dialogRef.close();
             }, (error) => {
                 console.log(error);
                 this._progress = false;
-                this._snackBar.open(error.error, 'Echèc', {
-                    duration: 2000
+                Swal.fire({
+                  type: 'error',
+                  title: 'Opps ...',
+                  text: error.error,
+                  footer: '<a href>Echèc</a>'
                 });
                 this.dialogRef.close();
             }

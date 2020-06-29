@@ -8,10 +8,10 @@
               <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
-                  <img src=" ../../assets/images/logo.svg">
+                  <img src=" assets/images/logo-new.png">
                 </div>
-                <h4>Bonjour! Commençons</h4>
-                <h6 class="font-weight-light">Connecte toi pour y acceder.</h6>
+                <!-- <h4>Bonjour! Commençons</h4> -->
+                <h6 class="font-weight-light">Connectez vous pour y acceder.</h6>
                 <form class="pt-3" id="loginform" class="form-vertical" #loginForm="ngForm" role="form" (ngSubmit)="save()">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" [(ngModel)]="user.login" name="login" autofocus required placeholder="Login" >

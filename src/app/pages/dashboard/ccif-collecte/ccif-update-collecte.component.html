@@ -33,7 +33,7 @@
             </mat-form-field>
 
             <mat-form-field class="inputForm">
-                <input matInput [(ngModel)]="model.dateCollecte" name="dateCollecte" [matDatepicker]="picker" placeholder="Date Début">
+                <input matInput [(ngModel)]="model.dateCollecte" name="dateCollecte" [matDatepicker]="picker" placeholder="Collecte du...">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -42,9 +42,7 @@
     </div>
 
     <div mat-dialog-actions class="pull-right" *ngIf="!ShowWindow">
-        <button mat-raised-button [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
-        <button mat-raised-button style="background: #08c" type="submit" class="button">
-                Valider
-        </button>
+      <button class="btn btn-light" [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
+      <button  class="btn btn-gradient-primary mr-2" type="submit" > Valider</button>
     </div>
 </form>

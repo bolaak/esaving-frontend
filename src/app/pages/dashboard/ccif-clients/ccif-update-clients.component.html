@@ -48,7 +48,7 @@
                 <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button> -->
-            </mat-form-field>
+            </mat-form-field >
             <mat-form-field class="inputForm" appearance="legacy">
                 <input matInput placeholder="Quartier de résidence" name="quartier" [(ngModel)]="model.quartier">
                 <!-- <button mat-icon-button matSuffix (click)="hideen = !hideen" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideen">
@@ -56,20 +56,18 @@
             </button> -->
             </mat-form-field>
 
-            <mat-form-field>
+            <mat-form-field class="inputForm">
                 <input placeholder="Photo de L'utilisateur " [(ngModel)]="image_url" disabled name="image_url" matInput #message maxlength="200">
                 <button type="button" matSuffix mat-button mat-mini-fab (click)="file.click()">
-               <mat-icon>attachment</mat-icon>
-             </button>
+                  <i class="mdi mdi-cloud-upload menu-icon"></i>
+                </button>
                 <input hidden type="file" #file (change)="onChangeImag()" required />
             </mat-form-field>
         </div>
     </div>
 
     <div mat-dialog-actions class="pull-right" *ngIf="!ShowWindow">
-        <button mat-raised-button [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
-        <button mat-raised-button style="background: #08c" type="submit" class="button">
-              Valider
-            </button>
+      <button class="btn btn-light" [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
+      <button  class="btn btn-gradient-primary mr-2" type="submit" [disabled]="!image_url" > Valider</button>
     </div>
 </form>

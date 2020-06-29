@@ -1,39 +1,40 @@
 table {
-    width: 92%;
+  width: 92%;
 }
 
 .mat-paginator {
-    width: 92%;
+  width: 92%;
 }
 
 .mat-form-field {
-    font-size: 14px;
-    width: 50%;
+  font-size: 14px;
+  width: 50%;
 }
 
 .container {
-    margin: auto;
-    padding: 20px;
+  margin: auto;
+  padding: 20px;
 }
 
 .mat-header-cell {
-    background-color: #08c;
-    color: #f5f5ff;
-    text-align: center;
+  background-color: #9a55ff;
+  color: #f5f5ff;
+  text-align: center;
 }
 
 .mat-cell {
-    text-align: center;
+  text-align: center;
 }
 
 .inputForm {
-    width: 100%;
+  width: 100%;
 }
 
 .mat-toolbar {
-    background: #08c;
+  background: linear-gradient(to right, #da8cff, #9a55ff) !important;
+  box-shadow: 1px 1px 12px rgb(102, 102, 102);
 }
 
 .snakColor {
-    background: rgb(45, 180, 45);
+  background: rgb(45, 180, 45);
 }

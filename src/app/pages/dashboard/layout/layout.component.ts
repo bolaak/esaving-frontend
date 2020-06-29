@@ -81,7 +81,8 @@ export class LayoutComponent implements OnInit, AfterViewInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Oui'
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non'
     }).then((result) => {
       if (result.value) {
         localStorage.clear();
