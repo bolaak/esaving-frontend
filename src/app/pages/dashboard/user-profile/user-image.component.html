@@ -1,0 +1,18 @@
+<form #updateform="ngForm" role="form" (ngSubmit)="modifier()">
+  <h1 mat-dialog-title>Modification de la photo de profile</h1>
+  <div mat-dialog-content>
+    <p style="color: #08c; font-size: 10px">Ces informations sont confidentielles*</p>
+    <mat-form-field class="inputForm">
+      <input placeholder="Photo de L'utilisateur " [(ngModel)]="image_url" name="image_url" matInput
+          #message maxlength="200">
+      <button type="button" matSuffix mat-button mat-mini-fab (click)="file.click()">
+          <mat-icon>attachment</mat-icon>
+      </button>
+      <input hidden type="file" #file (change)="onChangeImag()" required />
+  </mat-form-field>
+  </div>
+  <div mat-dialog-actions style="float: right">
+    <button mat-button [mat-dialog-close]="'CLOSED'">Annuler</button>
+    <button mat-button style="background: #08c" type="submit" class="button">Modifier</button>
+  </div>
+</form>

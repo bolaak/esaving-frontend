@@ -1,0 +1,82 @@
+<div class="container"><br/>
+    <mat-toolbar color="primary" style="width:92%">
+        <span class="fill-remaining-space">Liste Tontines</span>
+    </mat-toolbar>
+    <mat-form-field class="inputForm" style="width: 20%">
+        <mat-label>Mes Collecteurs</mat-label>
+        <mat-select name="id_cpe" [(ngModel)]="id_cpe">
+            <!-- <mat-option>Collecteur</mat-option> -->
+            <mat-option *ngFor="let c of collecteur" [value]="c.idUtilisateur"> {{c.prenom}}&nbsp;{{c.nom}} </mat-option>
+        </mat-select>
+    </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+    <mat-form-field class="inputForm" style="width: 20%">
+        <mat-label>Statut Tontine</mat-label>
+        <mat-select name="sexeClient" [(ngModel)]="statut" (selectionChange)='getDatas()'>
+            <!-- <mat-option>--</mat-option> -->
+            <mat-option value="TOUT"> TOUT </mat-option>
+            <mat-option value="EN_COURS"> EN COUR </mat-option>
+            <mat-option value="CLOTUREE"> CLOTUREE </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <!-- <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+    </mat-form-field> -->
+    <br/><br/>
+
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+        <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+
+        <ng-container matColumnDef="photo">
+            <th mat-header-cell *matHeaderCellDef> PHOTO </th>
+            <mat-cell *matCellDef="let item">
+                <img mat-card-avatar style="height: 70px; width: 70px; border-radius: 50%;" src="{{imageUrl + item?.client.photo}}">
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ref">
+            <th mat-header-cell *matHeaderCellDef> Référence </th>
+            <td mat-cell *matCellDef="let item"> {{item?.referenceTontine}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let item"> {{item?.client.nomClient}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef> Prénom </th>
+            <td mat-cell *matCellDef="let item"> {{item?.client.prenomClient}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef> Contact </th>
+            <td mat-cell *matCellDef="let item"> {{item?.client.telephoneClient}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="mise">
+            <th mat-header-cell *matHeaderCellDef> Durée </th>
+            <td mat-cell *matCellDef="let item"> {{item?.duree }} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="montant">
+            <th mat-header-cell *matHeaderCellDef> Montant </th>
+            <td mat-cell *matCellDef="let item"> {{item?.montantTontine| currency:'XAF':'symbol':'2.0-3':'fr' }} </td>
+        </ng-container>
+        <ng-container matColumnDef="debut">
+            <th mat-header-cell *matHeaderCellDef> Début </th>
+            <td mat-cell *matCellDef="let item"> {{item?.dateDebutTontine | date:'fullDate'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fin">
+            <th mat-header-cell *matHeaderCellDef> Fin </th>
+            <td mat-cell *matCellDef="let item"> {{item?.dateFinTontine | date:'fullDate'}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator showFirstLastButtons (page)="page($event)"></mat-paginator>
+</div>

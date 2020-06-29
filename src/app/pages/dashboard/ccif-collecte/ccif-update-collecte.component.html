@@ -1,0 +1,50 @@
+<form #agenceForm="ngForm" role="form" (ngSubmit)="save()">
+    <div mat-dialog-content>
+        <div *ngIf="ShowWindow">
+            <h2 mat-dialog-title>Confirmation de suppression</h2>
+            <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+            <mat-dialog-content>
+                <div>
+                    Voulez vous vraiment supprimer cet collecteur ?
+                </div>
+            </mat-dialog-content>
+            <mat-dialog-actions style="float: right;">
+                <button mat-raised-button color="warn" [mat-dialog-close]="'CLOSED'">NON</button>
+                <button type="button" mat-raised-button color="primary" (click)="DoDel()">OUI</button>
+            </mat-dialog-actions>
+        </div>
+        <div *ngIf="!ShowWindow" style="overflow: visible;">
+            <mat-toolbar color="primary">COLLECTE</mat-toolbar>
+            <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar><br/>
+
+            <mat-form-field class="inputForm">
+                <mat-label>Clients</mat-label>
+                <mat-select name="idCompteTontine" [(ngModel)]="model.idCompteTontine">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let o of souscri" [value]="o.idCompteTontine" style="font-weight: bold">
+                        {{o.client.nomClient}}&nbsp; {{o.client.prenomClient | uppercase }}&nbsp;
+                        <span class="float= right">({{o.montantTontine| currency:'XAF':'symbol':'2.0-3':'fr'}})</span> </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="inputForm" appearance="legacy">
+                <mat-label>Montant Collecte</mat-label>
+                <input matInput name="montantCollecte" [(ngModel)]="model.montantCollecte">
+            </mat-form-field>
+
+            <mat-form-field class="inputForm">
+                <input matInput [(ngModel)]="model.dateCollecte" name="dateCollecte" [matDatepicker]="picker" placeholder="Date Début">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+    </div>
+
+    <div mat-dialog-actions class="pull-right" *ngIf="!ShowWindow">
+        <button mat-raised-button [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
+        <button mat-raised-button style="background: #08c" type="submit" class="button">
+                Valider
+        </button>
+    </div>
+</form>

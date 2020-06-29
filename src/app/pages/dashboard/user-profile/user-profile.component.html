@@ -1,0 +1,38 @@
+<mat-toolbar>
+    <h4 style="color: #f5f5f5">Paramètre Utilisateur</h4>
+</mat-toolbar><br />
+<mat-card class="example-card">
+    <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+            <img *jhiHasAnyRessources="'admin'" mat-card-image width="70" height="70" src="assets/images/faces/face1.jpg" alt="Photo of a Shiba Inu" style="margin-top: 2px">
+            <img *jhiHasAnyRessources="['caissier', 'cex','cpe', 'dg']" mat-card-image width="70" height="70" src="{{Url + img}}" alt="Photo of a Shiba Inu" style="margin-top: 2px">
+        </div>
+        <mat-card-title><span>AGENCE :</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{agence}}</span></mat-card-title>
+        <mat-card-subtitle><span><b><span>PROFIL :</span>&nbsp;&nbsp;&nbsp;&nbsp;{{role}}</b>
+            </span>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <img *jhiHasAnyRessources="'admin'" mat-card-image src="assets/images/faces/face1.jpg" alt="Photo of a Shiba Inu" style="border-radius: 50%">
+    <img *jhiHasAnyRessources="['caissier', 'cex','cpe', 'dg']" mat-card-image src="{{Url + img}}" alt="Photo of a Shiba Inu" style="border-radius: 50%">
+    <mat-card-content>
+        <mat-grid-list cols="2" rowHeight="20px">
+            <mat-grid-tile><span>NOM :</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="dsg">{{nom}}</span> </mat-grid-tile>
+            <mat-grid-tile><span>PRENOMS :</span> &nbsp;&nbsp;&nbsp; <span class="dsg">{{prenom}}</span></mat-grid-tile>
+            <mat-grid-tile><span>CONTACT :</span>&nbsp;&nbsp;&nbsp; <span class="dsg">{{tel}}</span></mat-grid-tile>
+            <mat-grid-tile><span>GENRE :</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="dsg">{{genre}}</span>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-icon-button (click)="details()">
+            <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button mat-icon-button (click)="open()">
+            <mat-icon>vpn_key</mat-icon>
+        </button>
+        <button mat-icon-button (click)="image()">
+            <mat-icon>photo</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,67 @@
+
+
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+          <div class="row flex-grow">
+            <div class="col-lg-4 mx-auto">
+              <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+              <div class="auth-form-light text-left p-5">
+                <div class="brand-logo">
+                  <img src=" ../../assets/images/logo.svg">
+                </div>
+                <h4>Bonjour! Commençons</h4>
+                <h6 class="font-weight-light">Connecte toi pour y acceder.</h6>
+                <form class="pt-3" id="loginform" class="form-vertical" #loginForm="ngForm" role="form" (ngSubmit)="save()">
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" [(ngModel)]="user.login" name="login" autofocus required placeholder="Login" >
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" [(ngModel)]="user.password" name="password" autofocus required  placeholder="Mot de passe" >
+                  </div>
+                  <div class="mt-3">
+                    <button type="submit" [disabled]="!user.login || !user.password" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
+                      Connexion
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+
+
+<!-- <div id="loginbox" style="margin-top: 8%">
+    <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+    <form id="loginform" class="form-vertical" #loginForm="ngForm" role="form" (ngSubmit)="save()">
+        <div class="control-group normal_text">
+            <h3>
+                <span>TONTINE - APHEDD FINANCE NEO VERSION</span></h3>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <input type="text" [(ngModel)]="user.login" name="login" autofocus required placeholder="Login" />
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <input type="password" [(ngModel)]="user.password" name="password" autofocus required
+                        placeholder="Mot de passe" />
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success " [disabled]="!user.login || !user.password"
+                style="float: right; margin-left: 17px; background-color: rgba(151, 8, 8, 0.781); height: 32px; width: 120px; border: none;font-weight: bold ">
+                CONNEXION
+            </button>
+        </div>
+    </form>
+</div> -->

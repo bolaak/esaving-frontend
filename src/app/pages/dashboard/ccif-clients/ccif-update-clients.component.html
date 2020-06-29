@@ -1,0 +1,75 @@
+<form #agenceForm="ngForm" role="form" (ngSubmit)="save()">
+    <div mat-dialog-content>
+        <div *ngIf="ShowWindow">
+            <h2 mat-dialog-title>Confirmation de suppression</h2>
+            <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+            <mat-dialog-content>
+                <div>
+                    Voulez vous vraiment supprimer ce Client ?
+                </div>
+            </mat-dialog-content>
+            <mat-dialog-actions style="float: right;">
+                <button mat-raised-button color="warn" [mat-dialog-close]="'CLOSED'">NON</button>
+                <button type="button" mat-raised-button color="primary" (click)="DoDel()">OUI</button>
+            </mat-dialog-actions>
+        </div>
+        <div *ngIf="!ShowWindow" style="overflow: visible;">
+            <mat-toolbar color="primary">Clients</mat-toolbar>
+            <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+            <br/>
+            <!-- <mat-form-field class="inputForm" appearance="legacy">
+                <mat-label>Référence</mat-label>
+                <input matInput name="referenceClient" [(ngModel)]="model.referenceClient">
+            </mat-form-field> -->
+
+            <mat-form-field class="inputForm" appearance="legacy">
+                <mat-label>Nom</mat-label>
+                <input matInput name="nomClient" [(ngModel)]="model.nomClient">
+            </mat-form-field>
+            <mat-form-field class="inputForm">
+                <input matInput placeholder="Prénom" name="prenomClient" [(ngModel)]="model.prenomClient">
+            </mat-form-field>
+            <mat-form-field class="inputForm">
+                <mat-label>Sexe</mat-label>
+                <mat-select name="sexeClient" [(ngModel)]="model.sexeClient">
+                    <mat-option>--</mat-option>
+                    <mat-option value="Masculin"> Homme </mat-option>
+                    <mat-option value="Feminin"> Femme </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="inputForm">
+                <input matInput placeholder="Secteur D'activité" name="secteur" [(ngModel)]="model.secteur">
+            </mat-form-field>
+            <mat-form-field class="inputForm">
+                <input matInput placeholder="Contact téléphonique" name="telephoneClient" [(ngModel)]="model.telephoneClient">
+            </mat-form-field>
+            <mat-form-field class="inputForm" appearance="legacy">
+                <input matInput placeholder="Commune du client" name="commune" [(ngModel)]="model.commune">
+                <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button> -->
+            </mat-form-field>
+            <mat-form-field class="inputForm" appearance="legacy">
+                <input matInput placeholder="Quartier de résidence" name="quartier" [(ngModel)]="model.quartier">
+                <!-- <button mat-icon-button matSuffix (click)="hideen = !hideen" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideen">
+                <mat-icon>{{hideen ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button> -->
+            </mat-form-field>
+
+            <mat-form-field>
+                <input placeholder="Photo de L'utilisateur " [(ngModel)]="image_url" disabled name="image_url" matInput #message maxlength="200">
+                <button type="button" matSuffix mat-button mat-mini-fab (click)="file.click()">
+               <mat-icon>attachment</mat-icon>
+             </button>
+                <input hidden type="file" #file (change)="onChangeImag()" required />
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div mat-dialog-actions class="pull-right" *ngIf="!ShowWindow">
+        <button mat-raised-button [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
+        <button mat-raised-button style="background: #08c" type="submit" class="button">
+              Valider
+            </button>
+    </div>
+</form>

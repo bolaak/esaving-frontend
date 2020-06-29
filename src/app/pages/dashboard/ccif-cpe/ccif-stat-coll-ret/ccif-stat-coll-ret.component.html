@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" style="width:100%">
+  <span class="fill-remaining-space">Statistique des retards de collecte</span>
+</mat-toolbar>
+<mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+<br>
+<div style="margin-left: 250px;">
+  <mat-form-field style="width: 35%;">
+    <input matInput [(ngModel)]="date_retard" name="date_retard" [matDatepicker]="picker8" placeholder="Date Début">
+    <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+    <mat-datepicker #picker8></mat-datepicker>
+  </mat-form-field>&nbsp;&nbsp;&nbsp;
+  <button mat-button color="primary" (click)="download()">
+    Valider
+  </button>
+  <button mat-button [mat-dialog-close]="'CLOSED'">FERMER</button>
+</div>
+<form class="form" *ngIf="statColl">
+  <mat-dialog-content>
+      <p class="py-1"><iframe style="margin-left: 5%" frameborder="1"
+              style="width: -webkit-fill-available;height: -webkit-fill-available; margin: 5%"
+              #iframeContrat></iframe></p>
+  </mat-dialog-content>
+</form>

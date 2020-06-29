@@ -1,0 +1,37 @@
+<mat-toolbar color="primary">Agence</mat-toolbar><br/>
+<form class="example-form" #agenceForm="ngForm" role="form" (ngSubmit)="save()">
+    <div *ngIf="ShowWindow">
+        <h2 mat-dialog-title>Confirmation de suppression</h2>
+        <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+        <mat-dialog-content>
+            <div>
+                Voulez vous vraiment supprimer cette cette Agence ?
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions style="float: right;">
+            <button mat-raised-button color="warn" [mat-dialog-close]="'CLOSED'">NON</button>
+            <button type="button" mat-raised-button color="primary" (click)="DoDel()">OUI</button>
+        </mat-dialog-actions>
+    </div>
+    <div *ngIf="!ShowWindow">
+        <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+        <!-- <mat-form-field class="inputForm">
+            <input matInput placeholder="Référence" name="reference" [(ngModel)]="model.reference">
+        </mat-form-field> -->
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Nom agence" name="nomAgence" [(ngModel)]="model.nomAgence">
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Adresse de l'agence" name="adresse" [(ngModel)]="model.adresse">
+        </mat-form-field>
+        <!-- <mat-form-field class="inputForm">
+            <input matInput placeholder="Compte agence" name="compteAgence" [(ngModel)]="model.compteAgence">
+        </mat-form-field> -->
+
+        <mat-divider></mat-divider><br />
+        <div class="pull-right">
+        <button class="btn btn-light" [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
+        <button  class="btn btn-gradient-primary mr-2" type="submit" [disabled]="!model.nomAgence||!model.adresse"> Valider</button>
+        </div>
+    </div>
+</form>

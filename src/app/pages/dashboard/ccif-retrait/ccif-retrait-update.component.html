@@ -1,0 +1,47 @@
+<form #agenceForm="ngForm" role="form" (ngSubmit)="save()">
+    <div mat-dialog-content>
+        <mat-toolbar color="primary">Retrait</mat-toolbar>
+        <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+        <br/>
+        <mat-form-field class="inputForm">
+            <mat-label>Clients</mat-label>
+            <mat-select name="idCompteTontine" [(ngModel)]="model.idCompteTontine" (selectionChange)="getAmountMise()">
+                <mat-option>Liste des Clients</mat-option>
+                <mat-option *ngFor="let o of souscri" [value]="o.idCompteTontine" style="font-weight: bold">
+                    {{o.client.nomClient}}&nbsp; {{o.client.prenomClient | uppercase }}&nbsp;
+                    <span class="float= right">{{o.montantTontine| currency:'XAF':'symbol':'2.0-3':'fr'}}</span> </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Montant à retirer" name="montantRetrait" [(ngModel)]="model.montantRetrait">
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Libellé" name="libelleRetrait" [(ngModel)]="model.libelleRetrait">
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Caisse" name="bureauRetrait" [(ngModel)]="model.bureauRetrait">
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Lieu du Retrait" name="lieuRetrait" [(ngModel)]="model.lieuRetrait">
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Montant en lettre" name="montantLettreRetrait" [(ngModel)]="model.montantLettreRetrait">
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Numero de compte" name="numeroCompte" [(ngModel)]="model.numeroCompte">
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+            <input matInput placeholder="Intitulé du compte" name="nomCompte" [(ngModel)]="model.nomCompte">
+        </mat-form-field>
+        <mat-form-field class="inputForm">
+          <input matInput [(ngModel)]="model.dateRetrait" name="dateRetrait" [matDatepicker]="picker8" placeholder="Date retrait">
+          <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+          <mat-datepicker #picker8></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="pull-right">
+          <button class="btn btn-light" [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
+          <button  class="btn btn-gradient-primary mr-2" type="submit" > Valider</button>
+    </div>
+</form>

@@ -1,0 +1,107 @@
+<form #agenceForm="ngForm" role="form" (ngSubmit)="save()">
+    <div mat-dialog-content>
+        <div *ngIf="ShowWindow">
+            <h2 mat-dialog-title>Confirmation de suppression</h2>
+            <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+            <mat-dialog-content>
+                <div>
+                    Voulez vous vraiment supprimer cet utilisateur ?
+                </div>
+            </mat-dialog-content>
+            <mat-dialog-actions style="float: right;">
+                <button mat-raised-button color="warn" [mat-dialog-close]="'CLOSED'">NON</button>
+                <button type="button" mat-raised-button color="primary" (click)="DoDel()">OUI</button>
+            </mat-dialog-actions>
+        </div>
+        <div *ngIf="!ShowWindow" style="overflow: visible;">
+            <mat-toolbar color="primary">Souscription Tontine</mat-toolbar>
+            <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+
+            <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                    <ng-template matStepLabel>Informations Client</ng-template>
+                    <br />
+                    <!-- <mat-form-field class="inputForm" appearance="legacy">
+                        <mat-label>Référence</mat-label>
+                        <input matInput name="referenceClient" [(ngModel)]="model.client.referenceClient">
+                    </mat-form-field> -->
+
+                    <mat-form-field class="inputForm" appearance="legacy">
+                        <mat-label>Nom</mat-label>
+                        <input matInput name="nomClient" [(ngModel)]="model.client.nomClient">
+                    </mat-form-field>
+                    <mat-form-field class="inputForm">
+                        <input matInput placeholder="Prénom" name="prenomClient" [(ngModel)]="model.client.prenomClient">
+                    </mat-form-field>
+                    <mat-form-field class="inputForm">
+                        <mat-label>Sexe</mat-label>
+                        <mat-select name="sexeClient" [(ngModel)]="model.client.sexeClient">
+                            <mat-option>--</mat-option>
+                            <mat-option value="Masculin"> Homme </mat-option>
+                            <mat-option value="Feminin"> Femme </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="inputForm">
+                        <input matInput placeholder="Secteur D'activité" name="secteur" [(ngModel)]="model.client.secteur">
+                    </mat-form-field>
+                    <mat-form-field class="inputForm">
+                        <input matInput placeholder="Contact téléphonique" name="telephoneClient" [(ngModel)]="model.client.telephoneClient">
+                    </mat-form-field>
+                    <mat-form-field class="inputForm" appearance="legacy">
+                        <input matInput placeholder="Commune du client" name="commune" [(ngModel)]="model.client.commune">
+                        <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button> -->
+                    </mat-form-field>
+                    <mat-form-field class="inputForm" appearance="legacy">
+                        <input matInput placeholder="Quartier de résidence" name="quartier" [(ngModel)]="model.client.quartier">
+                        <!-- <button mat-icon-button matSuffix (click)="hideen = !hideen" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideen">
+                        <mat-icon>{{hideen ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button> -->
+                    </mat-form-field>
+
+                    <mat-form-field class="inputForm">
+                        <input placeholder="Photo de L'utilisateur " [(ngModel)]="image_url" disabled name="image_url" matInput #message maxlength="200">
+                        <button type="button" matSuffix mat-button mat-mini-fab (click)="file.click()">
+                          <i class="mdi mdi-apple-keyboard-caps menu-icon"></i>
+                        </button>
+                        <input hidden type="file" #file (change)="onChangeImag()" required />
+                    </mat-form-field>
+                    <div>
+                        <button type="button" mat-button matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup">
+                    <ng-template matStepLabel>Souscription Tontine</ng-template>
+                    <br />
+                    <!-- <mat-form-field class="inputForm" appearance="legacy">
+                        <mat-label>Référence</mat-label>
+                        <input matInput name="referenceClient" [(ngModel)]="model.referenceTontine">
+                    </mat-form-field> -->
+
+                    <mat-form-field class="inputForm" appearance="legacy">
+                        <mat-label>Durée Tontinz</mat-label>
+                        <input matInput name="Duréee" [(ngModel)]="model.duree">
+                    </mat-form-field>
+                    <mat-form-field class="inputForm">
+                        <input matInput placeholder="Montant De la Tontine" name="montantTontine" [(ngModel)]="model.montantTontine">
+                    </mat-form-field>
+                    <mat-form-field class="inputForm">
+                        <input matInput [(ngModel)]="model.dateDebutTontine" name="dateDebutTontine" [matDatepicker]="dateDebutTontine" placeholder="Date début">
+                        <mat-datepicker-toggle matSuffix [for]="dateDebutTontine"></mat-datepicker-toggle>
+                        <mat-datepicker #dateDebutTontine></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="inputForm">
+                        <input matInput [(ngModel)]="model.dateFinTontine" name="dateFinTontine" [matDatepicker]="dateFinTontine" placeholder="Date fin">
+                        <mat-datepicker-toggle matSuffix [for]="dateFinTontine"></mat-datepicker-toggle>
+                        <mat-datepicker #dateFinTontine></mat-datepicker>
+                    </mat-form-field>
+                    <div mat-dialog-actions class="pull-right" *ngIf="!ShowWindow">
+                      <button class="btn btn-light" [mat-dialog-close]="'CLOSED'">ANNULER</button> &nbsp;&nbsp;
+                      <button  class="btn btn-gradient-primary mr-2" type="submit" [disabled]="!dateFinTontine" > Valider</button>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</form>

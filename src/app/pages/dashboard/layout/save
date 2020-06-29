@@ -1,0 +1,118 @@
+<!--Header-part-->
+<div id="header">
+    <img class="profile" *jhiHasAnyRessources="'admin'" src="assets/img/admin.png" alt="">
+    <img class="profile" *jhiHasAnyRessources="['caissier', 'cex','cpe', 'dg']" src="{{imageUrl + picture}}" alt="">
+    <div style="position: absolute; left: 10%; top: 11%">
+        <p style="color: #f5f5f5; font-size: 12px"><span style="color: #f5f5f5"><b>{{prenom}}&nbsp;{{nom}}</b></span></p>
+        <p style="color: #f5f5f5; font-size: 18px"><span style="color: #f5f5f5"><b>{{infoUsers?.libelle}}</b></span></p>
+    </div>
+</div>
+
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-info" style="margin-left: 20%; margin-top: 20px;">
+    <h3 class="col-md" style="color: #f5f5f5; font-style: italic; text-align: center">
+        TONTINE - APHEDD FINANCE
+        <!-- <span style="color: #e6e6e6" *ngIf="zone"></span> -->
+        <span style="color: #dfdfdf" *jhiHasAnyRessources="['caissier', 'cex','cpe']"> / Agence : {{agence?.nomAgence }}</span>
+    </h3>
+</div>
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+<div id="search" class="navbar navbar-info" style="margin-top: 2%">
+    <ul class="nav">
+        <li class="dropdown" id="profile-messages">
+            <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user">
+            </i> &nbsp;<span class="text">Bienvenue &nbsp;<b>{{nom}}</b></span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a [routerLink]="['/dashboard/user-profile']">&nbsp; Profil</a></li>
+                <li class="divider"></li>
+                <li *jhiHasAnyRessources="'admin'"><a (click)="open()">&nbsp; Réinitialisation</a></li>
+                <li class="divider"></li>
+                <li><a (click)="deconnexion()">&nbsp; Déconnexion</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!--close-top-serch-->
+<!--sidebar-menu--><br/><br/>
+<div id="sidebar"><a class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+    <ul>
+        <li><a [routerLink]="['/dashboard/home']"><i class="icon-dashboard"></i> <span>TABLEAU DE BORD </span></a></li>
+        <li class="submenu" *jhiHasAnyRessources="['caissier', 'cex','cpe','dg']">
+            <a href="#">
+                <i class="icon icon-credit-card"></i>
+                <span>ACTEURS</span> <span class="label label-important">3</span></a>
+            <ul>
+                <li *jhiHasAnyRessources="['cex','dg']"><a [routerLink]="['/dashboard/caissiers']">Caissiers</a></li>
+                <li *jhiHasAnyRessources="['caissier', 'cex','dg']"><a [routerLink]="['/dashboard/collecteur']">Colleteurs</a></li>
+                <li *jhiHasAnyRessources="['caissier', 'cex','cpe','dg']"><a [routerLink]="['/dashboard/clients']">Clients</a></li>
+            </ul>
+        </li>
+        <li class="submenu" *jhiHasAnyRessources="['cpe','caissier', 'cex']">
+            <a href="#"><i class="icon icon-credit-card">
+        </i> <span>TONTINE</span> <span class="label label-important">3</span></a>
+            <ul>
+                <li *jhiHasAnyRessources="['cpe', 'cex']"><a [routerLink]="['/dashboard/souscription']">Souscription</a></li>
+                <li *jhiHasAnyRessources="['caissier', 'cex']"><a [routerLink]="['/dashboard/souscrits']">Liste Souscription</a></li>
+                <!-- <li *jhiHasAnyRessources="['cpe','caissier', 'cex']"><a [routerLink]="['/dashboard/echeancier']">Echéancier</a></li> -->
+            </ul>
+        </li>
+        <li *jhiHasAnyRessources="'cpe'" class="submenu"> <a><i class="icon icon-cogs">
+            </i > <span>COLLECTES</span> <span class="label label-important">2</span></a>
+                <ul>
+                  <li *jhiHasAnyRessources="'cpe'"><a [routerLink]="['/dashboard/collecte']"> <span>Collecter </span></a></li>
+                  <li *jhiHasAnyRessources="'cpe'"><a [routerLink]="['/dashboard/list-coll']"> <span>Historique </span></a></li>
+                </ul>
+        </li>
+        <li class="submenu" *jhiHasAnyRessources="'caissier'">
+            <a href="#">
+                <i class="icon icon-credit-card"></i>
+                <span>VERSEMENT</span> <span class="label label-important">3</span></a>
+            <ul>
+              <li *jhiHasAnyRessources="'caissier'"><a [routerLink]="['/dashboard/versements']"> <span>Verser</span></a></li>
+              <li *jhiHasAnyRessources="'caissier'"><a [routerLink]="['/dashboard/liste-versee']"> <span>Historique</span></a></li>
+            </ul>
+        </li>
+        <li class="submenu" *jhiHasAnyRessources="'caissier'">
+            <a href="#">
+                <i class="icon icon-credit-card"></i>
+                <span>RETRAIT</span> <span class="label label-important">3</span></a>
+            <ul>
+                <li *jhiHasAnyRessources="'caissier'"><a [routerLink]="['/dashboard/retrait']"><span>Retrait</span></a></li>
+              <li *jhiHasAnyRessources="'caissier'"><a [routerLink]="['/dashboard/hist-retrait']"> <span>Historique</span></a></li>
+            </ul>
+        </li>
+        <!-- <li *jhiHasAnyRessources="['caissier', 'cex','dg']"><a [routerLink]="['/dashboard/commissions']"><i class="icon icon-money"></i> <span>COMMISSIONS</span></a></li> -->
+        <li *jhiHasAnyRessources="'admin'" class="submenu"> <a>
+        <i class="icon icon-cogs"></i >
+        <span>Administration</span> <span class="label label-important">2</span></a>
+            <ul>
+                <li *jhiHasAnyRessources="'admin'"><a [routerLink]="['/dashboard/agences']">Agences</a></li>
+                <!-- <li *jhiHasAnyRessources="'admin'"><a [routerLink]="['/dashboard/profile']">Profile</a></li> -->
+                <li *jhiHasAnyRessources="'admin'"><a [routerLink]="['/dashboard/users-managment']">Utilisateurs</a></li>
+            </ul>
+        </li>
+        <li *jhiHasAnyRessources="['admin','dg']" class="submenu"> <a><i class="icon icon-cogs">
+            </i > <span>STATISTIQUES</span> <span class="label label-important">2</span></a>
+                <ul>
+                  <li *jhiHasAnyRessources="['admin','dg']"><a [routerLink]="['/dashboard/statistics']"> <span>Globale</span></a></li>
+                  <li *jhiHasAnyRessources="'dg'"><a [routerLink]="['/dashboard/relevee']"> <span>Par agence</span></a></li>
+                </ul>
+        </li>
+    </ul>
+</div>
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"> <a [routerLink]="['/dashboard/home']" title="Go to Home" class="tip-bottom" style="color: #08c"><i class="icon-home"></i> {{ JOUR | date: 'fullDate' }} </a></div>
+    </div>
+    <!--End-breadcrumbs-->
+
+    <!--End-Action boxes-->
+    <router-outlet></router-outlet>
+
+</div>

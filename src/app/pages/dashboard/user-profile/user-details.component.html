@@ -1,0 +1,31 @@
+<form #updateform="ngForm" role="form">
+    <h1 mat-dialog-title>Détail Complet</h1>
+    <div mat-dialog-content>
+        <p style="color: #08c; font-size: 10px">Informations Complètes*</p>
+        <mat-form-field style="color: #08c; font-size: 15px">
+            <input matInput placeholder="Référence" value="{{reference}}" type="text" readonly>
+        </mat-form-field>
+        <mat-form-field style="color: #08c; font-size: 15px">
+            <input matInput placeholder="Login" value="{{login}}" type="text" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nom" value="{{nom}}" type="text" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Prénom" value="{{prenom}}" type="text" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Sexe" value="{{sexe}}" type="text" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Rôle " value="{{role}}" type="text" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Contact" value="{{contact}}" type="text" readonly>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions style="float: right">
+        <button mat-button [mat-dialog-close]="'CLOSED'">Fermer</button>
+        <!-- <button mat-button style="background: #08c" type="submit" class="button">Modifier</button> -->
+    </div>
+</form>

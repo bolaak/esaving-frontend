@@ -1,0 +1,209 @@
+<div class="container"><br />
+    <mat-grid-list class="container" cols="2" rowHeight="1:1">
+        <mat-grid-tile>
+            <mat-card class="example-card">
+                <mat-toolbar color="primary" style="width:100%">
+                    <span>Commission Par Collecteur</span>
+                </mat-toolbar>
+                <mat-card-content>
+                    <form>
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="dateDe" name="dateDe" [matDatepicker]="picker8" placeholder="Date Début">
+                            <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+                            <mat-datepicker #picker8></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="dateFi" name="dateFi" [matDatepicker]="picker9" placeholder="Date Fin">
+                            <mat-datepicker-toggle matSuffix [for]="picker9"></mat-datepicker-toggle>
+                            <mat-datepicker #picker9></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Caissier</mat-label>
+                            <mat-select name="idcais" [(ngModel)]="idcais" (selectionChange)="getCpe()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let o of data" [value]="o.idUtilisateur" style="font-weight: bold">
+                                    {{o.nom}}&nbsp; {{o.prenom | uppercase }}&nbsp;
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Collecteurs</mat-label>
+                            <mat-select name="cpe_id" [(ngModel)]="cpe_id" (selectionChange)="iframeCommCPE()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let z of CLT" [value]="z.idUtilisateur" style="font-weight: bold">
+                                    {{z.nom}}&nbsp; {{z.prenom | uppercase }}&nbsp;
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="example-card">
+                <mat-toolbar color="primary" style="width:100%; background: #13ddc2e3;">
+                    <span>Commission Par Clients</span>
+                </mat-toolbar>
+                <mat-card-content>
+                    <form>
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="date_debut" name="date_debut" [matDatepicker]="picker4" placeholder="Date Début">
+                            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                            <mat-datepicker #picker4></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="date_fin" name="date_fin" [matDatepicker]="picker5" placeholder="Date Fin">
+                            <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                            <mat-datepicker #picker5></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Caissier</mat-label>
+                            <mat-select name="id_cais" [(ngModel)]="id_cais" (selectionChange)="getSousOfComm()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let o of data" [value]="o.idUtilisateur" style="font-weight: bold">
+                                    {{o.nom}}&nbsp; {{o.prenom | uppercase }}&nbsp;
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Clients</mat-label>
+                            <mat-select name="id_client" [(ngModel)]="id_client" (selectionChange)="iframeComm()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let o of souscri" [value]="o.idClient" style="font-weight: bold">
+                                    {{o.client.nomClient}}&nbsp; {{o.client.prenomClient | uppercase }}&nbsp;
+                                    <span class="float= right">({{o.montantTontine| currency:'XAF':'symbol':'2.0-3':'fr'}})</span> </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="example-card">
+                <mat-toolbar color="warn" style="width:100%">
+                    <span>Solde Tontine Client</span>
+                </mat-toolbar>
+                <mat-card-content>
+                    <form>
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="date_balance" name="date_balance" [matDatepicker]="pickercc" placeholder="Solde Au ?*">
+                            <mat-datepicker-toggle matSuffix [for]="pickercc"></mat-datepicker-toggle>
+                            <mat-datepicker #pickercc></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Caissier</mat-label>
+                            <mat-select name="caissier" [(ngModel)]="caissier" (selectionChange)="getDatasCpe()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let o of data" [value]="o.idUtilisateur" style="font-weight: bold">
+                                    {{o.nom}}&nbsp; {{o.prenom | uppercase }}&nbsp;
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Collecteurs</mat-label>
+                            <mat-select name="id_cpes" [(ngModel)]="id_cpes" (selectionChange)="iframeBalance()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let cc of COLL" [value]="cc.idUtilisateur" style="font-weight: bold">
+                                    {{cc.nom}}&nbsp; {{cc.prenom | uppercase }}&nbsp;
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="example-card">
+                <mat-toolbar color="primary" style="width:100%">
+                    <span>Commission Par Agence</span>
+                </mat-toolbar>
+                <mat-card-content>
+                    <form>
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="date1" name="date1" [matDatepicker]="picker6" placeholder="Date Début">
+                            <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                            <mat-datepicker #picker6></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="date2" name="date2" [matDatepicker]="picker7" placeholder="Date Fin">
+                            <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                            <mat-datepicker #picker7></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>AGENCES</mat-label>
+                            <mat-select name="id_agence" [(ngModel)]="id_agence" (selectionChange)="iframeCommAg()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let a of Agence" [value]="a.idAgence" style="font-weight: bold">
+                                    {{a.nomAgence | uppercase}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <form>
+                <mat-card class="example-card">
+                    <mat-toolbar color="warn" style="width:100%; background: #089797e3;">
+                        <span>Statistique Client Par collecteur</span>
+                    </mat-toolbar>
+                    <mat-card-content>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Caissier</mat-label>
+                            <mat-select name="id_caissier" [(ngModel)]="id_caissier" (selectionChange)="getDataCpe()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let o of data" [value]="o.idUtilisateur" style="font-weight: bold">
+                                    {{o.nom}}&nbsp; {{o.prenom | uppercase }}&nbsp;
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Collecteurs</mat-label>
+                            <mat-select name="id_cpe" [(ngModel)]="id_cpe" (selectionChange)="iframeState()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let c of CPE" [value]="c.idUtilisateur" style="font-weight: bold">
+                                    {{c.nom}}&nbsp; {{c.prenom | uppercase }}&nbsp;
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card class="example-card">
+                <mat-toolbar color="warn" style="width:100%">
+                    <span>Historique Compte Tontine</span>
+                </mat-toolbar>
+                <mat-card-content>
+                    <form>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Caissier</mat-label>
+                            <mat-select name="id_cai" [(ngModel)]="id_cai" (selectionChange)="getSouscriTontine()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let o of data" [value]="o.idUtilisateur" style="font-weight: bold">
+                                    {{o.nom}}&nbsp; {{o.prenom | uppercase }}&nbsp;
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="inputForm">
+                            <mat-label>Clients</mat-label>
+                            <mat-select name="id_compte_tontine" [(ngModel)]="id_compte_tontine" (selectionChange)="iframeCpteTont()">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let o of souscri" [value]="o.idCompteTontine" style="font-weight: bold">
+                                    {{o.client.nomClient}}&nbsp; {{o.client.prenomClient | uppercase }}&nbsp;
+                                    <span class="float= right">({{o.montantTontine| currency:'XAF':'symbol':'2.0-3':'fr'}})</span> </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

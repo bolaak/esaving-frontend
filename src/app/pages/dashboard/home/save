@@ -1,0 +1,53 @@
+<div>
+    <div class="container-fluid">
+        <div class="quick-actions_homepage">
+            <ul class="quick-actions">
+                <li class="bg_lb span3">
+                    <a href="index.html"> <i class="icon-dashboard"></i> Total Commission
+                        <p> {{ _dashboard?.montantTotalCommissions | currency:'XAF':'symbol':'2.0-3':'fr' }}</p>
+                    </a>
+                </li>
+                <li class="bg_lg span3">
+                    <a href="charts.html"> <i class="icon-signal"></i> Total Retrait
+                        <p> {{ _dashboard?.montantTotalRetire | currency:'XAF':'symbol':'2.0-3':'fr'}}</p>
+                    </a>
+                </li>
+                <li class="bg_ly span3">
+                    <a href="widgets.html"> <i class="icon-inbox"></i> Total Tontine
+                        <p> {{ _dashboard?.montantTotalTontine | currency:'XAF':'symbol':'2.0-3':'fr' }}</p>
+                    </a>
+                </li>
+                <li class="bg_lo span3">
+                    <a href="tables.html"> <i class="icon-th"></i> Total Versé
+                        <p> {{ _dashboard?.montantTotalVerse | currency:'XAF':'symbol':'2.0-3':'fr'}}</p>
+                    </a>
+                </li>
+                <li class="bg_ls span3">
+                    <a href="grid.html"> <i class="icon-user"></i> Nombre Client
+                        <p> {{ _dashboard?.nbreClients }}</p>
+                    </a>
+                </li>
+                <li class="bg_lo span3">
+                    <a href="form-common.html"> <i class="icon-th-list"></i> Nombre Collecteur
+                        <p> {{ _dashboard?.nbreCpes }}</p>
+                    </a>
+                </li>
+                <li class="bg_ls span3">
+                    <a href="buttons.html"> <i class="icon-tint"></i> Total Souscription
+                        <p> {{ _dashboard?.nbreSouscriptions }}</p>
+                    </a>
+                </li>
+                <li class="bg_lb span3">
+                    <a href="interface.html"> <i class="icon-pencil"></i> Tontines En Cours
+                        <p> {{ _dashboard?.nbreTontineEnCours }}</p>
+                    </a>
+                </li>
+                <li class="bg_lg span3">
+                    <a href="calendar.html"> <i class="icon-calendar"></i> Tontine Expirées
+                        <p> {{ _dashboard?.nbreTontineExpire }}</p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>

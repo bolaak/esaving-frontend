@@ -1,0 +1,90 @@
+<div class="container"><br/>
+    <mat-toolbar color="primary" style="width:92%">
+        <span class="fill-remaining-space">Clients</span>
+    </mat-toolbar>
+    <div class="pull-right" style="margin-right: 100px">
+        <!-- <button mat-fab color="primary" (click)="callToADD()">
+        <mat-icon>add</mat-icon>
+         </button> -->
+        <!-- &nbsp;&nbsp; -->
+        <!-- <button mat-fab color="warning" (click)="getDatas()">
+          <mat-icon>autorenew</mat-icon>
+        </button> -->
+    </div>
+    <!-- <mat-form-field class="inputForm">
+        <mat-label>Collecteurs</mat-label>
+        <mat-select name="id_cpe" [(ngModel)]="idcais" (selectionChange)="getCpe()">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let c of CLT" [value]="c.idUtilisateur" style="font-weight: bold">
+                {{c.nom}}&nbsp; {{c.prenom | uppercase }}&nbsp;
+            </mat-option>
+        </mat-select>
+    </mat-form-field> -->
+    <br/><br/>
+
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+        <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+
+        <ng-container matColumnDef="photo">
+            <th mat-header-cell *matHeaderCellDef> PHOTO </th>
+            <mat-cell *matCellDef="let item">
+                <img mat-card-avatar style="height: 70px; width: 70px; border-radius: 50%;" src="{{imageUrl + item?.photo}}">
+            </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="ref">
+            <th mat-header-cell *matHeaderCellDef> Référence </th>
+            <td mat-cell *matCellDef="let item"> {{item?.referenceClient}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let item"> {{item?.nomClient}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef> Prénom </th>
+            <td mat-cell *matCellDef="let item"> {{item?.prenomClient}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef> Contact </th>
+            <td mat-cell *matCellDef="let item"> {{item?.telephoneClient}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="secteur">
+            <th mat-header-cell *matHeaderCellDef> Secteur D'activité </th>
+            <td mat-cell *matCellDef="let item"> {{item?.secteur}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date Création </th>
+            <td mat-cell *matCellDef="let item"> {{item?.dateCreation | date:'fullDate'}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+
+        <!-- <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions</th>
+            <td mat-cell *matCellDef="let i" class="actions">
+
+                <button mat-icon-button (click)="callToEDIT({data:i, actions: true})">
+                <mat-icon>edit</mat-icon>
+                </button> &nbsp;&nbsp;
+                <button mat-icon-button (click)="callToEDIT({data:i, actions: false})">
+                <mat-icon>delete</mat-icon></button>
+                <button class="mdc-icon-button material-icons delete" (click)="delete(i)">delete</button>
+            </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator showFirstLastButtons (page)="page($event)"></mat-paginator>
+</div>

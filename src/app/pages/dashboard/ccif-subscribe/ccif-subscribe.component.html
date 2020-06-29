@@ -1,0 +1,92 @@
+<div class="container">
+    <mat-toolbar color="primary" style="width:92%">
+        <span class="fill-remaining-space">Liste Clients Souscrit</span>
+    </mat-toolbar>
+    <div class="d-flex align-items-right float-right" style="margin-right: 100px">
+      <button mat-fab style="background-color: #9a55ff; font-size: x-large;" (click)="callToADD()">
+        <i class="mdi mdi-plus menu-icon"></i>
+      </button>
+        <!-- &nbsp;&nbsp;
+    <button mat-fab color="warning" (click)="getDatas()">
+            <mat-icon>autorenew</mat-icon>
+    </button> -->
+    </div>
+    <!-- <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+    </mat-form-field> -->
+    <mat-form-field class="inputForm" style="width: 20%; font-size: 18px; color: #08c; float: right;">
+        <input matInput placeholder="Total verser" value="{{TOTAL | currency:'XAF':'symbol':'2.0-3':'fr'}}">
+    </mat-form-field>
+    <br/><br/>
+
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+        <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+
+        <ng-container matColumnDef="photo">
+            <th mat-header-cell *matHeaderCellDef> PHOTO </th>
+            <mat-cell  class="matCell" *matCellDef="let item">
+                <img mat-card-avatar style="height: 70px; width: 70px; border-radius: 50%;" src="{{imageUrl + item?.client.photo}}">
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ref">
+            <th mat-header-cell *matHeaderCellDef> Référence </th>
+            <td mat-cell *matCellDef="let item"> {{item?.referenceTontine}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let item"> {{item?.client.nomClient}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef> Prénom </th>
+            <td mat-cell *matCellDef="let item"> {{item?.client.prenomClient}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef> Contact </th>
+            <td mat-cell *matCellDef="let item"> {{item?.client.telephoneClient}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="mise">
+            <th mat-header-cell *matHeaderCellDef> Durée </th>
+            <td mat-cell *matCellDef="let item"> {{item?.duree }} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="montant">
+            <th mat-header-cell *matHeaderCellDef> Montant Souscription </th>
+            <td mat-cell *matCellDef="let item"> {{item?.montantTontine| currency:'XAF':'symbol':'2.0-3':'fr' }} </td>
+        </ng-container>
+        <ng-container matColumnDef="debut">
+            <th mat-header-cell *matHeaderCellDef> Début </th>
+            <td mat-cell *matCellDef="let item"> {{item?.dateDebutTontine | date:'fullDate'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fin">
+            <th mat-header-cell *matHeaderCellDef> Fin </th>
+            <td mat-cell *matCellDef="let item"> {{item?.dateFinTontine | date:'fullDate'}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions</th>
+            <td mat-cell *matCellDef="let i" class="actions">
+
+                <!-- <button mat-icon-button (click)="callToEDIT({data:i, actions: true})">
+                <mat-icon>edit</mat-icon>
+            </button> -->
+                <!-- &nbsp;&nbsp; -->
+                <button mat-icon-button (click)="callToEDIT({data:i, actions: false})">
+                    <i class="mdi mdi-archive menu-icon"></i>
+                </button>
+                <!-- <button class="mdc-icon-button material-icons delete" (click)="delete(i)">delete</button> -->
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator showFirstLastButtons (page)="page($event)"></mat-paginator>
+</div>

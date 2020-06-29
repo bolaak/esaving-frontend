@@ -1,0 +1,12 @@
+<form class="form">
+    <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+    <mat-toolbar color="primary" style="text-align: center;">
+        <h2 mat-dialog-title>Statistique Commission Par Agence </h2>
+    </mat-toolbar>
+    <mat-dialog-content>
+        <p class="py-1"><iframe style="margin-left: 5%" frameborder="1" style="width: -webkit-fill-available;height: -webkit-fill-available; margin: 5%" #iframeContrat></iframe></p>
+    </mat-dialog-content>
+    <mat-dialog-actions style="float: right;">
+        <button mat-button color="warn" [mat-dialog-close]="'CLOSED'">FERMER</button>
+    </mat-dialog-actions>
+</form>

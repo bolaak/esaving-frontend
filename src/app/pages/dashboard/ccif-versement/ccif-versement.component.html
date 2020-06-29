@@ -1,0 +1,95 @@
+<div class="container">
+    <mat-toolbar color="primary" style="width:92%">
+        <span class="fill-remaining-space">Versement </span>
+    </mat-toolbar>
+    <div class="d-flex align-items-right float-right" style="margin-right: 100px">
+        <button mat-fab style="background-color: #9a55ff; font-size: x-large;" (click)="save()">
+          <i class="mdi mdi-check menu-icon"></i>
+        </button>
+    </div><br/>
+    <mat-form-field class="inputForm" style="width: 30%">
+        <mat-label>Mes Collecteurs</mat-label>
+        <mat-select name="id_cpe" [(ngModel)]="id_cpe" (selectionChange)='getDatas()'>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let c of collecteur" [value]="c.idUtilisateur"> {{c.prenom}}&nbsp;{{c.nom}} </mat-option>
+        </mat-select>
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <mat-form-field class="inputForm" style="width: 20%; font-size: 18px; color: #08c">
+        <input matInput placeholder="Total verser" value="{{TOTAL | currency:'XAF':'symbol':'2.0-3':'fr'}}">
+    </mat-form-field>
+    <br/><br/>
+
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+        <mat-progress-bar *ngIf="_progress" mode="indeterminate"></mat-progress-bar>
+
+        <ng-container matColumnDef="photo">
+            <th mat-header-cell *matHeaderCellDef> PHOTO </th>
+            <mat-cell *matCellDef="let item">
+                <img mat-card-avatar style="height: 70px; width: 70px;" src="{{imageUrl + item?.photo}}">
+            </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="ref">
+            <th mat-header-cell *matHeaderCellDef> Référence </th>
+            <td mat-cell *matCellDef="let item"> {{item?.referenceClient}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let item"> {{item?.nomClient}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef> Prénom </th>
+            <td mat-cell *matCellDef="let item"> {{item?.prenomClient}} </td>
+        </ng-container>
+
+        4
+        <!-- Weight Column -->
+        <ng-container matColumnDef="tontine">
+            <th mat-header-cell *matHeaderCellDef> Cotisation </th>
+            <td mat-cell *matCellDef="let item"> {{item?.collecte.montantCollecte | currency:'XAF':'symbol':'2.0-3':'fr'}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef> Contact </th>
+            <td mat-cell *matCellDef="let item"> {{item?.telephoneClient}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="secteur">
+            <th mat-header-cell *matHeaderCellDef> Secteur D'activité </th>
+            <td mat-cell *matCellDef="let item"> {{item?.secteur}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date Collecte </th>
+            <td mat-cell *matCellDef="let item"> {{item?.collecte.dateCollecte | date:'fullDate'}} </td>
+        </ng-container>
+        <!-- Symbol Column -->
+
+        <!-- <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions</th>
+            <td mat-cell *matCellDef="let i" class="actions">
+
+                <button mat-icon-button (click)="callToEDIT({data:i, actions: true})">
+                <mat-icon>edit</mat-icon>
+            </button> &nbsp;&nbsp;
+                <button mat-icon-button (click)="callToEDIT({data:i, actions: false})">
+                <mat-icon>delete</mat-icon>
+            </button>
+            </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator showFirstLastButtons (page)="page($event)"></mat-paginator>
+</div>
